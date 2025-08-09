@@ -1,0 +1,58 @@
+# MLflow 관련
+mlruns/
+mlartifacts/
+mlflow-artifact-store/
+outputs/
+
+# Python 관련
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 가상환경
+venv/
+ENV/
+env/
+.env/
+
+# IDE 관련
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 운영체제 관련
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 로그 및 임시 파일
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/

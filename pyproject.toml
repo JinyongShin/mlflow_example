@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlflow_practice"
+version = "0.1.0"
+description = "MLflow를 활용한 머신러닝 모델 개발, 추적, 관리 및 배포 실습"
+
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "mlflow>=2.0.0",
+    "scikit-learn>=1.0.0",
+    "pandas>=1.0.0",
+    "numpy>=1.20.0",
+    "flask>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "pytest>=6.0.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203"]

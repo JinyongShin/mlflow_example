@@ -1,93 +1,101 @@
-# mlflow_example
+# MLflow 실습 프로젝트
 
+이 프로젝트는 MLflow를 활용한 머신러닝 모델 개발, 추적, 관리 및 배포의 전체 워크플로우를 학습하기 위한 실습 코드를 포함하고 있습니다.
 
+## 프로젝트 구성
 
-## Getting started
+- `mlflow_example.py`: 기본적인 MLflow 실험 추적 및 모델 등록 예제
+- `mlflow_model_serving.py`: 등록된 MLflow 모델을 로드하고 추론하는 예제
+- `mlflow_hyperparameter_tuning.py`: MLflow를 활용한 하이퍼파라미터 튜닝 예제
+- `mlflow_model_deployment.py`: MLflow 모델을 Flask 웹 서비스로 배포하는 예제
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 설치 방법
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+1. 필요한 패키지 설치:
 
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin http://utility.alphabridge.co.kr/vitalSign/mlflow_example.git
-git branch -M main
-git push -uf origin main
+```bash
+uv sync
 ```
 
-## Integrate with your tools
+## 사용 방법
 
-- [ ] [Set up project integrations](http://utility.alphabridge.co.kr/vitalSign/mlflow_example/-/settings/integrations)
+### 1. 기본 모델 학습 및 추적
 
-## Collaborate with your team
+```bash
+uv run mlflow_example.py
+```
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+이 스크립트는 Iris 데이터셋에 대한 RandomForest 분류기를 학습하고, 모델 및 관련 메타데이터를 MLflow에 기록합니다.
 
-## Test and Deploy
+### 2. 하이퍼파라미터 튜닝
 
-Use the built-in continuous integration in GitLab.
+```bash
+uv run mlflow_hyperparameter_tuning.py
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+이 스크립트는 여러 하이퍼파라미터 조합을 시도하고, 각 실험 결과를 MLflow에 기록하여 최적의 모델을 찾습니다.
 
-***
+### 3. 모델 로딩 및 추론
 
-# Editing this README
+```bash
+uv run mlflow_model_serving.py
+```
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+이 스크립트는 MLflow 모델 레지스트리에서 모델을 로드하고 테스트 데이터에 대한 예측을 수행합니다.
 
-## Suggestions for a good README
+### 4. 모델 배포 (REST API)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```bash
+uv run mlflow_model_deployment.py
+```
 
-## Name
-Choose a self-explaining name for your project.
+이 스크립트는 등록된 모델을 Flask 웹 서버로 배포하여 REST API를 통해 예측 서비스를 제공합니다.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## MLflow UI 확인하기
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+학습 및 실험 결과를 시각적으로 확인하려면 MLflow UI를 실행하세요:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```bash
+mlflow ui
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+그리고 웹 브라우저에서 http://localhost:5000 에 접속하세요.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### 5. 사용 flow 예시
+MLflow를 사용하려면 다음과 같은 단계로 진행하면 됩니다:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+* 먼저 `mlflow_example.py` 를 실행하여 기본 모델을 학습하고 등록
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+* `mlflow ui` 명령어로 MLflow UI를 실행하여 학습 결과 확인
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+* `mlflow_hyperparameter_tuning.py` 로 최적의 모델 찾기
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+* `mlflow_model_serving.py` 로 모델 로딩 및 추론 테스트
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+* `mlflow_model_deployment.py` 로 모델을 API 서비스로 배포
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+이 예제들을 통해 MLflow의 주요 기능인 실험 추적, 모델 관리, 모델 배포 프로세스를 모두 경험해볼 수 있습니다.
 
-## License
-For open source projects, say how it is licensed.
+## MLflow의 주요 기능
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+1. **실험 추적 (Experiment Tracking)**
+   - 실험 매개변수, 메트릭, 모델 및 아티팩트 추적
+   - 실험 간 비교 및 시각화
+
+2. **모델 레지스트리 (Model Registry)**
+   - 모델 버전 관리
+   - 모델 스테이지 관리 (개발, 스테이징, 프로덕션)
+   - 모델 계보 및 메타데이터 관리
+
+3. **모델 서빙 (Model Serving)**
+   - REST API를 통한 모델 배포
+   - 배치 추론 지원
+
+4. **모델 패키징 (Model Packaging)**
+   - 다양한 ML 프레임워크 지원 (scikit-learn, TensorFlow, PyTorch 등)
+   - 일관된 모델 형식 및 인터페이스
+
+## 참고 자료
+
+- [MLflow 공식 문서](https://mlflow.org/docs/latest/index.html)
+- [MLflow GitHub 저장소](https://github.com/mlflow/mlflow)
